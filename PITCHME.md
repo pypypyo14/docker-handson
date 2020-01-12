@@ -135,6 +135,37 @@ For more examples and ideas, visit:
 
 ---
 
+## 何が起こった?
+- (図解)
+
+## Docker image と Docker Container
+- コンテナは都度作られ、アプリケーションを動かし、停止する。imageはそのタネ。（ざっくり）
+
+```
+$ docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+b87aaf8c901c        hello-world         "/hello"            5 seconds ago       Exited (0) 3 seconds ago                       determined_cerf
+```
+
+- コンテナ hello-world は停止している。
+- コンテナ hello-world を何度も動かすと、都度増える。
+``
+$ docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
+66aaa15f4818        hello-world         "/hello"            4 seconds ago        Exited (0) 2 seconds ago                            amazing_goldwasser
+b87aaf8c901c        hello-world         "/hello"            About a minute ago   Exited (0) About a minute ago                       determined_cerf
+``
+- どれも、IMAGEの列に hello-world と書いてる!
+
+$ docker image ls を叩いてみる
+hello-worldのイメージが見えるはず。
+$ docker run xxx で指定していたのは、このイメージの名前。
+
+---
+
+
+
+
 ## 参考リンク
 -  Docker Docs
   - https://docs.docker.com/
