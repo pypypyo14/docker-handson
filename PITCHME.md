@@ -14,16 +14,17 @@ https://tatsunoko.connpass.com/event/159292/
 
 ---
 
-## 得られること
+## 今日得られること
 
 - Dockerの概要理解
 - Docker基本操作コマンドの理解
+- Dockerfile基本操作
 
 ---
 
 ### 内容について
 
-公式DocのGet Startedをかいつまんで説明する内容になっています
+公式DocのGet Startedをかいつまんで説明する内容になっています  
 https://docs.docker.com/
 
 
@@ -87,8 +88,8 @@ https://docs.docker.com/
 
 ## Hello World
 
-HelloWorld用のコンテナを  
-インターネットで「<font color ="red">共有</font>」&  「<font color ="red">実行</font>」しましょう！
+HelloWorldのコンテナを  
+インターネットで「<font color ="red">共有</font>」&  「<font color ="red">実行</font>」してみましょう！
 
 ---
 
@@ -112,34 +113,22 @@ Status: Downloaded newer image for hello-world:latest
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
+(略)
 ```
 @[2-6](コンテナイメージをダウンロード)
-@[7-27](アプリケーションの実行(標準出力))
+@[7-8](アプリケーションの実行(標準出力))
 
 ---
 
 ## 何が起こった?
 - (図解)
 
-## Docker image と Docker Container
-- コンテナは都度作られ、アプリケーションを動かし、停止する。imageはそのタネ。（ざっくり）
+---
+
+## Docker image と Docker container
+
+- コンテナは都度作成され、アプリケーションを動かし、停止する。
+- imageはコンテナの元となるもの。
 
 ```
 $ docker container ls -a
@@ -147,25 +136,45 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 b87aaf8c901c        hello-world         "/hello"            5 seconds ago       Exited (0) 3 seconds ago                       determined_cerf
 ```
 
-- コンテナ hello-world は停止している。
-- コンテナ hello-world を何度も動かすと、都度増える。
-``
+@[3](実行後、コンテナは停止している(Exited(0)))
+
+---
+
+```
+# もう一度
+$ docker run hello-world
+(略)
+
 $ docker container ls -a
 CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
 66aaa15f4818        hello-world         "/hello"            4 seconds ago        Exited (0) 2 seconds ago                            amazing_goldwasser
 b87aaf8c901c        hello-world         "/hello"            About a minute ago   Exited (0) About a minute ago                       determined_cerf
-``
-- どれも、IMAGEの列に hello-world と書いてる!
-
-$ docker image ls を叩いてみる
-hello-worldのイメージが見えるはず。
-$ docker run xxx で指定していたのは、このイメージの名前。
+```
+@[2](もう一度 docker run すると…)
+@[8](新しいコンテナが作成される)
+2つのコンテナのCONTAINER ID は異なるが、IMAGE はどちらも共通。|
 
 ---
 
+$ docker image ls コマンドを叩いてみると、hello-worldというIMAGEがある
+
+```
+$ docker image ls
+REPOSITORY                            TAG                 IMAGE ID            CREATED             SIZE
+hello-world                           latest              fce289e99eb9        12 months ago       1.84kB
+```
+
+- `$ docker run xxx` で指定していたのは、このイメージの名前!
+- インストール、あるいはビルドしたイメージは `$ docker image ls`コマンドで確認可能！
+
+---
+## Docker imageを作るには？
+
+以降Dockerfileの説明。まだできておらず…
+メモ https://gist.github.com/pypypyo14/7c53334b73d5ca36382cc5a34f5679d5
 
 
-
+---
 ## 参考リンク
 -  Docker Docs
   - https://docs.docker.com/

@@ -1,7 +1,5 @@
 # ハンズオン
 
----
-
 ## コマンドライン編
 
 - Dockerのコマンドライン操作
@@ -169,8 +167,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 - https://docs.docker.com/get-started/part2/
   - 具体的なWebアプリを乗せたコンテナのDockerfile。勉強になるのでぜひ読んでみてください！
 
----
 ## 最後に
-- 抵抗のない方は、自分のDockerfileをDockerhubに公開してみましょう!
+- 抵抗のない方は、自分のDockerイメージをDockerhubに公開してみましょう!
   - 再配布NGのソフトウェアを置くのはNG
   - <font color="red">(宿題)ライセンス的に安全な例を示す</font>
