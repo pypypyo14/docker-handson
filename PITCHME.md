@@ -14,19 +14,11 @@ https://tatsunoko.connpass.com/event/159292/
 
 ---
 
-## 今日得られること
+## 今日やること
 
 - Dockerの概要理解
 - Docker基本操作コマンドの理解
-- Dockerfile基本操作
-
----
-
-### 内容について
-
-公式DocのGet Startedをかいつまんで説明する内容になっています  
-https://docs.docker.com/
-
+- Dockerfile基本文法
 
 ---
 
@@ -39,7 +31,7 @@ https://docs.docker.com/
 - 💻 Docker ContainerとDocker Image
 - 💻 Dockerfile
 - 📖 まとめ
-- 💻 いろいろなDockerfile
+- 💻 ハンズオン!
 
 ---
 
@@ -78,11 +70,11 @@ https://docs.docker.com/
 
 - コンテナ環境上のアプリケーションを
   「<font color ="red">開発</font>」「<font color ="red">共有</font>」「<font color ="red">実行</font>」するためのプラットフォーム
-  - コンテナとは、コンピュータリソースをすばやく効率的に活用する仕組み
+  - コンテナとは、コンピュータリソースをすばやく効率的に活用する仕組み|
 
 ---
 
-## Hello World
+## 💻Hello World💻
 
 ---
 
@@ -116,7 +108,7 @@ This message shows that your installation appears to be working correctly.
 (略)
 ```
 @[2-6](コンテナイメージをダウンロード)
-@[7-8](アプリケーションの実行(標準出力))
+@[7-11](アプリケーションの実行(標準出力))
 
 ---
 
@@ -132,31 +124,27 @@ This message shows that your installation appears to be working correctly.
 
 ```
 $ docker container ls -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
-b87aaf8c901c        hello-world         "/hello"            5 seconds ago       Exited (0) 3 seconds ago                       determined_cerf
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+dba1b03834f1        hello-world         "/hello"            9 seconds ago       Exited (0) 7 seconds ago                        festive_black
 ```
 
 @[3](実行後、コンテナは停止している(Exited(0)))
 
 ---
+## Docker image と Docker container
 
 ```
-# もう一度
-$ docker run hello-world
-(略)
-
 $ docker container ls -a
-CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
-66aaa15f4818        hello-world         "/hello"            4 seconds ago        Exited (0) 2 seconds ago                            amazing_goldwasser
-b87aaf8c901c        hello-world         "/hello"            About a minute ago   Exited (0) About a minute ago                       determined_cerf
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+dba1b03834f1        hello-world         "/hello"            9 seconds ago       Exited (0) 7 seconds ago                        festive_black
+2a0530875f56        hello-world         "/hello"            12 seconds ago      Exited (0) 10 seconds ago                       festive_satoshi
 ```
-@[2](もう一度 docker run すると…)
-@[8](新しいコンテナが作成される)
-2つのコンテナのCONTAINER ID は異なるが、IMAGE はどちらも共通。|
+@[4](もう一度 docker run すると、新しいコンテナが作成される)
 
 ---
 
-$ docker image ls コマンドを叩いてみると、hello-worldというIMAGEがある
+Dockerイメージを確認するコマンドを叩いてみると  
+hello-worldというIMAGEがある
 
 ```
 $ docker image ls
@@ -164,11 +152,11 @@ REPOSITORY                            TAG                 IMAGE ID            CR
 hello-world                           latest              fce289e99eb9        12 months ago       1.84kB
 ```
 
-- `$ docker run xxx` で指定していたのは、このイメージの名前!
-- インストール、あるいはビルドしたイメージは `$ docker image ls`コマンドで確認可能！
+DL、あるいはビルドしたイメージは  
+`$ docker image ls`コマンドで確認可能！
 
 ---
-## Docker imageを作るには？
+## Docker imageをビルドする
 
 以降Dockerfileの説明。まだできておらず…
 メモ https://gist.github.com/pypypyo14/7c53334b73d5ca36382cc5a34f5679d5
